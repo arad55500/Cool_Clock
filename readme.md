@@ -1,4 +1,4 @@
-![Cool Clock 1.1 by Arad Okanin](https://imgur.com/FekVRXy)
+[Cool Clock 1.1 by Arad Okanin](https://i.imgur.com/FekVRXy.png)
 
 
 # Cool Clock V1.1
