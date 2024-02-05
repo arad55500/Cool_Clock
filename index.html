@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cool Clock</title>
+    <style>
+        body { 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: black; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #clock { font-size: 48px; }
+        .controls {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock">00:00:00</div>
+    <!-- Add some UI for customization -->
+    <div class="controls">
+        Color: <input type="color" id="textColor" onchange="changeTextColor()">
+        Background: <input type="color" id="bgColor" onchange="changeBgColor()">
+        Font: <select id="fontSelect" onchange="changeFont()">
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Monospace">Monospace</option>
+        </select>
+    </div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function changeTextColor() {
+            const color = document.getElementById('textColor').value;
+            document.body.style.color = color;
+        }
+
+        function changeBgColor() {
+            const color = document.getElementById('bgColor').value;
+            document.body.style.backgroundColor = color;
+        }
+
+        function changeFont() {
+            const font = document.getElementById('fontSelect').value;
+            document.body.style.fontFamily = font;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
