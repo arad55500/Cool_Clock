@@ -1,6 +1,6 @@
 
 
-# Cool Clock V1.1
+# Cool Clock V1.2
 
 Cool Clock is a simple, customizable digital clock built with Electron. It allows users to view the current time and customize the clock's appearance, including text color, background color, and font. Created by Arad Okanin.
 
