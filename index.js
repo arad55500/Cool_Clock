@@ -4,7 +4,7 @@ const path = require('path');
 function createWindow() {
   const win = new BrowserWindow({
     width: 700,
-    height: 700,
+    height: 570,
     resizable: false,
     autoHideMenuBar: true,
     title: 'Cool Clock',
