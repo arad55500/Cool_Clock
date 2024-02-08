@@ -112,13 +112,15 @@
         let selectedDate = new Date().toDateString();
 
         function updateClock() {
-            const timezoneOffset = parseInt(document.getElementById('timezoneSelect').value) * 3600000;
-            const now = new Date(new Date().getTime() + timezoneOffset);
-            const month = (now.getUTCMonth() + 1).toString().padStart(2, '0');
-            const day = now.getUTCDate().toString().padStart(2, '0');
-            const year = now.getUTCFullYear();
-            document.getElementById('dateDisplay').innerText = `${month}/${day}/${year}`;
+            // Update date
+            const timezoneOffset = parseInt(document.getElementById('timezoneSelect').value) * 3600000; // gets timezone offset
+            const now = new Date(new Date().getTime() + timezoneOffset); // gets current time
+            const month = (now.getUTCMonth() + 1).toString().padStart(2, '0'); // gets month
+            const day = now.getUTCDate().toString().padStart(2, '0'); // gets day
+            const year = now.getUTCFullYear(); // gets full year
+            document.getElementById('dateDisplay').innerText = `${month}/${day}/${year}`; // displays date
 
+            // Update clock
             const hours = now.getUTCHours().toString().padStart(2, '0');
             const minutes = now.getUTCMinutes().toString().padStart(2, '0');
             const seconds = now.getUTCSeconds().toString().padStart(2, '0');
@@ -128,6 +130,7 @@
             displayTodos();
         }
 
+        // Update calendar
         function updateCalendar(now) {
         const calendarContainer = document.querySelector('.calendar');
         calendarContainer.innerHTML = ''; // Clear previous calendar
@@ -135,6 +138,7 @@
         const currentMonth = now.getUTCMonth();
         const currentYear = now.getUTCFullYear();
 
+        // Generate calendar
         for (let i = 1; i <= daysInMonth; i++) {
             const dayElement = document.createElement('div');
             dayElement.className = 'day';
@@ -146,6 +150,8 @@
             if (isSelectedDate) {
                 dayElement.classList.add('today'); // Use the 'today' class to highlight the selected date
             }
+
+            // Add click event listener
             dayElement.addEventListener('click', function() {
                 selectDate(i, currentMonth, currentYear);
             });
@@ -153,6 +159,7 @@
         }
     }
 
+    // Select date
     function selectDate(day, month, year) {
         const date = new Date(Date.UTC(year, month, day));
         selectedDate = date.toDateString();
