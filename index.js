@@ -7,7 +7,7 @@ function createWindow() {
     height: 570,
     resizable: false,
     autoHideMenuBar: true,
-    title: 'Cool Clock',
+    title: 'Cool Clock V1.1 by Arad Okanin',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
