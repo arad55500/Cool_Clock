@@ -169,9 +169,9 @@
         updateClock(); // Call updateClock to refresh the calendar with the new selection
     }
 
-        function displayTodos() {
-        const todos = JSON.parse(localStorage.getItem(selectedDate) || '[]');
-        const todosContainer = document.querySelector('.todos');
+        function displayTodos() { // Display to-do list
+        const todos = JSON.parse(localStorage.getItem(selectedDate) || '[]'); // Get the current todos for the selected date
+        const todosContainer = document.querySelector('.todos'); // Get the todos container
         todosContainer.innerHTML = ''; // Clear current todos
         todos.forEach((todo, index) => {
             const todoElement = document.createElement('div'); // Create a new div element
