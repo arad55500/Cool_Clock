@@ -123,48 +123,48 @@
             document.getElementById('dateDisplay').innerText = `${month}/${day}/${year}`; // displays date
 
             // Update clock
-            const hours = now.getUTCHours().toString().padStart(2, '0');
-            const minutes = now.getUTCMinutes().toString().padStart(2, '0');
-            const seconds = now.getUTCSeconds().toString().padStart(2, '0');
-            document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
+            const hours = now.getUTCHours().toString().padStart(2, '0'); // gets hours
+            const minutes = now.getUTCMinutes().toString().padStart(2, '0'); // gets minutes
+            const seconds = now.getUTCSeconds().toString().padStart(2, '0'); // gets seconds
+            document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`; // displays clock
 
-            updateCalendar(now);
-            displayTodos();
+            updateCalendar(now); // Update calendar
+            displayTodos();// Update to-do list
         }
 
         // Update calendar
         function updateCalendar(now) {
-        const calendarContainer = document.querySelector('.calendar');
+        const calendarContainer = document.querySelector('.calendar'); // Get the calendar container
         calendarContainer.innerHTML = ''; // Clear previous calendar
         const daysInMonth = new Date(now.getUTCFullYear(), now.getUTCMonth() + 1, 0).getDate();
-        const currentMonth = now.getUTCMonth();
-        const currentYear = now.getUTCFullYear();
+        const currentMonth = now.getUTCMonth(); // Current month
+        const currentYear = now.getUTCFullYear(); // Current month and year
 
         // Generate calendar
         for (let i = 1; i <= daysInMonth; i++) {
-            const dayElement = document.createElement('div');
-            dayElement.className = 'day';
-            dayElement.textContent = i;
+            const dayElement = document.createElement('div'); // Create a new div element
+            dayElement.className = 'day'; // Set the class name
+            dayElement.textContent = i; // Set the text content of the div
             // Update for selected date
             const isSelectedDate = new Date(selectedDate).getUTCDate() === i && 
                                     new Date(selectedDate).getUTCMonth() === currentMonth && 
-                                    new Date(selectedDate).getUTCFullYear() === currentYear;
+                                    new Date(selectedDate).getUTCFullYear() === currentYear; // Check if the selected date matches the current date
             if (isSelectedDate) {
                 dayElement.classList.add('today'); // Use the 'today' class to highlight the selected date
             }
 
             // Add click event listener
             dayElement.addEventListener('click', function() {
-                selectDate(i, currentMonth, currentYear);
+                selectDate(i, currentMonth, currentYear); // Call selectDate function
             });
-            calendarContainer.appendChild(dayElement);
+            calendarContainer.appendChild(dayElement); // Append the day element to the calendar container
         }
     }
 
     // Select date
     function selectDate(day, month, year) {
-        const date = new Date(Date.UTC(year, month, day));
-        selectedDate = date.toDateString();
+        const date = new Date(Date.UTC(year, month, day)); // Create a new date object
+        selectedDate = date.toDateString(); // Update selected date
         displayTodos();
         updateClock(); // Call updateClock to refresh the calendar with the new selection
     }
@@ -174,22 +174,22 @@
         const todosContainer = document.querySelector('.todos');
         todosContainer.innerHTML = ''; // Clear current todos
         todos.forEach((todo, index) => {
-            const todoElement = document.createElement('div');
-            todoElement.className = 'todo-item';
-            todoElement.textContent = todo;
+            const todoElement = document.createElement('div'); // Create a new div element
+            todoElement.className = 'todo-item'; // Set the class name
+            todoElement.textContent = todo; // Set the text content of the div
             todoElement.addEventListener('click', function() {
-                removeTodo(index);
+                removeTodo(index); // Call removeTodo function
             });
-            todosContainer.appendChild(todoElement);
+            todosContainer.appendChild(todoElement); // Append the todo element to the todos container
         });
     }
 
     function addTodo() {
-        const todoInput = document.getElementById('todoInput');
-        if (todoInput.value.trim() === '') return;
-        const todos = JSON.parse(localStorage.getItem(selectedDate) || '[]');
-        todos.push(todoInput.value.trim());
-        localStorage.setItem(selectedDate, JSON.stringify(todos));
+        const todoInput = document.getElementById('todoInput'); // Get the input element
+        if (todoInput.value.trim() === '') return; // Do nothing if the input is empty
+        const todos = JSON.parse(localStorage.getItem(selectedDate) || '[]'); // Get the current todos for the selected date
+        todos.push(todoInput.value.trim()); // Add the new todo
+        localStorage.setItem(selectedDate, JSON.stringify(todos)); // Update localStorage
         todoInput.value = ''; // Clear input
         displayTodos();
     }
@@ -202,21 +202,21 @@
     }
 
         function changeTextColor() {
-            const color = document.getElementById('textColor').value;
-            document.body.style.color = color;
+            const color = document.getElementById('textColor').value; // Get the selected text color
+            document.body.style.color = color; // Set the text color
         }
 
         function changeBgColor() {
-            const color = document.getElementById('bgColor').value;
-            document.body.style.backgroundColor = color;
+            const color = document.getElementById('bgColor').value; // Get the selected background color
+            document.body.style.backgroundColor = color; // Set the background color
         }
 
         function changeFont() {
-            const font = document.getElementById('fontSelect').value;
-            document.body.style.fontFamily = font;
+            const font = document.getElementById('fontSelect').value; // Get the selected font
+            document.body.style.fontFamily = font; // Set the font
         }
 
-        setInterval(updateClock, 1000);
+        setInterval(updateClock, 1000); // Update the clock every second
         updateClock(); // Initial call to display the correct time immediately and generate the calendar
     </script>
 </body>
